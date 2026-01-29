@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetBehavior - AI宠物行为分析</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>
+                <span class="logo-text">PetBehavior</span>
+            </div>
+            <div class="header-status">
+                <span class="status-indicator" id="statusIndicator"></span>
+                <span class="status-text" id="statusText">连接中...</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主聊天区域 -->
+    <main class="chat-container">
+        <div class="chat-messages" id="chatMessages">
+            <!-- 欢迎消息 -->
+            <div class="message assistant-message">
+                <div class="message-avatar">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                    </svg>
+                </div>
+                <div class="message-content">
+                    <div class="message-text">
+                        👋 你好！我是PetBehavior AI助手。我可以帮助你分析宠物的行为问题。
+                        <br><br>
+                        你可以：
+                        <ul>
+                            <li>📝 输入文字描述宠物的行为</li>
+                            <li>🎥 上传宠物的行为视频</li>
+                        </ul>
+                        请问有什么可以帮助你的吗？
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 底部输入区域 -->
+    <footer class="input-container">
+        <div class="input-wrapper">
+            <!-- 视频上传按钮 -->
+            <button class="icon-button" id="uploadBtn" title="上传视频">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="17 8 12 3 7 8"/>
+                    <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+            </button>
+            <input type="file" id="videoInput" accept="video/*" style="display: none;">
+            
+            <!-- 文本输入框 -->
+            <div class="text-input-wrapper">
+                <textarea 
+                    id="messageInput" 
+                    class="message-input" 
+                    placeholder="输入消息或上传视频..."
+                    rows="1"
+                ></textarea>
+                <div class="file-preview" id="filePreview"></div>
+            </div>
+            
+            <!-- 发送按钮 -->
+            <button class="send-button" id="sendBtn" disabled>
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                </svg>
+            </button>
+        </div>
+    </footer>
+
+    <!-- 视频播放器模态框 -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-modal-overlay" onclick="closeVideoModal()"></div>
+        <div class="video-modal-content">
+            <div class="video-modal-header">
+                <h3 class="video-modal-title" id="videoModalTitle">视频预览</h3>
+                <button class="video-modal-close" onclick="closeVideoModal()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="video-modal-body">
+                <video id="videoPlayer" controls controlsList="nodownload">
+                    <source id="videoSource" src="" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+            </div>
+            <div class="video-modal-footer">
+                <div class="video-info" id="videoInfo"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
+
