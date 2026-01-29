@@ -14,3 +14,6 @@
 
 # 2 火山apikey
   在backend目录下新建.env,输入；ARK_API_KEY=3da72006-1ab3-4ebe-99b8-f3cae5a365f1  
+
+# 3 浏览器访问
+  http://localhost:8000/
